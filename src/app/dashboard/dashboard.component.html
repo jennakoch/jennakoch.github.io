@@ -1,0 +1,15 @@
+<h1>Pokedex</h1>
+
+<div class="pokedex">
+  <div class="pokemon-list" [class.full-width-list]="change">
+    <app-pokemon></app-pokemon>
+  </div>
+  <div class="pokemon-drawer" [class.drawer-closed]="change" [class.drawer-open]="drawerOpen">
+    <button class="drawer-control" (click)="handleDrawer()" [class.change]="change">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </button>
+    <app-pokemon-details></app-pokemon-details>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<h2>{{individual.name | capitalize}}</h2>
+<div class="basic-pokemon-info">
+    <img src="{{individual.sprites.front_default}}" class="sprite" height="100px">
+    <ul class="stats">
+        <li>
+            {{individual.height | toInches }} inches
+        </li>
+        <li>
+            {{individual.weight | toPounds }} pounds
+        </li>
+    </ul>
+</div>
+<ul class="types" >
+    <li *ngFor="let t of individual.types">{{t.type.name | capitalize}}</li>
+</ul>
+
+<ul class="info">
+    <li *ngFor="let st of individual.stats" >
+        <strong>{{st.stat.name}}</strong> 
+        <span>{{st.base_stat}}</span>
+    </li>
+</ul>

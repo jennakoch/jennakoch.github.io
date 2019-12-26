@@ -1,0 +1,88 @@
+<input [(ngModel)]="searchText" class="poke-search" placeholder="Search Pokemon by Name">
+<fieldset [class.sticky] = "sticky"  #stickyMenu [ngModel]="types">
+    <strong>Filter by Type</strong>
+        <input type="radio" name="types" id="normal" value="normal" class="normal" (click)="getByType('normal')">
+        <label for="normal">Normal</label>
+
+        <input type="radio" name="types" id="fire" value="fire" class="fire" (click)="getByType('fire')">
+        <label for="fire">Fire</label>
+
+        <input type="radio" name="types" id="water" value="water" class="water" (click)="getByType('water')">
+        <label for="water">Water</label>
+
+        <input type="radio" name="types" id="electric" value="electric" class="electric" (click)="getByType('electric')">
+        <label for="electric">Electric</label>
+
+        <input type="radio" name="types" id="grass" value="grass" class="grass" (click)="getByType('grass')">
+        <label for="grass">Grass</label>
+
+        <input type="radio" name="types" id="ice" value="ice" class="ice" (click)="getByType('ice')">
+        <label for="ice">Ice</label>
+
+        <input type="radio" name="types" id="fighting" value="fighting" class="fighting" (click)="getByType('fighting')">
+        <label for="fighting">Fighting</label>
+
+        <input type="radio" name="types" id="poison" value="poison" class="poison" (click)="getByType('poison')">
+        <label for="poison">Poison</label>
+
+        <input type="radio" name="types" id="ground" value="ground" class="ground" (click)="getByType('ground')">
+        <label for="ground">Ground</label>
+
+        <input type="radio" name="types" id="flying" value="flying" class="flying" (click)="getByType('flying')">
+        <label for="flying">Flying</label>
+
+        <input type="radio" name="types" id="psychic" value="psychic" class="psychic" (click)="getByType('psychic')">
+        <label for="psychic">Psychic</label>
+
+        <input type="radio" name="types" id="bug" value="bug" class="bug" (click)="getByType('bug')">
+        <label for="bug">Bug</label>
+
+        <input type="radio" name="types" id="rock" value="rock" class="rock" (click)="getByType('rock')">
+        <label for="rock">Rock</label>
+
+        <input type="radio" name="types" id="ghost" value="ghost" class="ghost" (click)="getByType('ghost')">
+        <label for="ghost">Ghost</label>
+
+        <input type="radio" name="types" id="dragon" value="dragon" class="dragon" (click)="getByType('dragon')">
+        <label for="dragon">Dragon</label>
+
+        <input type="radio" name="types" id="dark" value="dark" class="dark" (click)="getByType('dark')">
+        <label for="dark">Dark</label>
+
+        <input type="radio" name="types" id="steel" value="steel" class="steel" (click)="getByType('steel')">
+        <label for="steel">Steel</label>
+
+        <input type="radio" name="types" id="fairy" value="fairy" class="fairy" (click)="getByType('fairy')">
+        <label for="fairy">Fairy</label>
+
+        <input type="radio" name="types" id="ClearFilter" value="ClearFilter" class="clear-filter" checked (click)="clearFilter()">
+        <label for="ClearFilter">Clear Filter</label>
+
+
+</fieldset>
+
+<ul>
+    <li class="list-title"><h3>{{pokemonType | capitalize}}</h3></li>
+    <li *ngFor="let p of pokemonFiltered | filterNameType: searchText">
+        <a routerLink="/pokemon/{{p.pokemon.url | getId }}"  routerLinkActive="active-pokemon">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{p.pokemon.url | getId }}.png">
+            <span>{{p.pokemon.name | capitalize}}</span>
+        </a>
+    </li>
+</ul>
+
+
+<ul>
+    <li class="list-title"><h3>All Pokemon {{matching}}</h3></li>
+    <li *ngFor="let p of pokemon | filtername: searchText">
+        <a routerLink="/pokemon/{{p.url | getId }}"  routerLinkActive="active-pokemon">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{p.url | getId }}.png">
+            <span>{{p.name | capitalize}}</span>
+        </a>
+    </li>
+</ul>
+
+
+
+
+
