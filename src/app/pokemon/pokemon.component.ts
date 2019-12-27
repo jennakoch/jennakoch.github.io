@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { Pokemon } from '../pokemon';
 import { PokedexService } from '../pokedex.service';
 import { PokemonFiltered } from '../pokemonFiltered';
@@ -9,8 +9,8 @@ import { PokemonFiltered } from '../pokemonFiltered';
   styleUrls: ['./pokemon.component.scss']
 })
 export class PokemonComponent implements OnInit {
-  pokemon: Pokemon[] = [];
-  pokemonFiltered: PokemonFiltered[] = [];
+  public pokemon: Pokemon[];
+  public pokemonFiltered: PokemonFiltered[];
   isLoading: boolean = false;
   error: boolean = false;
   nextPage: string;
@@ -31,7 +31,7 @@ export class PokemonComponent implements OnInit {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll', [])
     handleScroll(){
       const windowScroll = window.pageYOffset;
       if(windowScroll >= this.elementPosition){

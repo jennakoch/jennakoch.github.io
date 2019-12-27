@@ -4,6 +4,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { Pokemon } from './pokemon';
 import { Individual } from './individual';
+import { Ability } from './ability';
 
 
 @Injectable()
@@ -41,6 +42,12 @@ export class PokedexService {
   {
     return this.http.get<Pokemon[]>(this.baseUrl + 'type/' + typeName)
     .pipe(map((pokemon: any) => pokemon.pokemon)
+    );
+  }
+
+  getAbilityById(id){
+    return this.http.get<Pokemon[]>(this.baseUrl + 'ability/' + id)
+    .pipe(map((ability: any) => ability)
     );
   }
 

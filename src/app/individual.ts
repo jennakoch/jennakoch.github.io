@@ -1,4 +1,4 @@
-export class Individual {
+export interface Individual {
     abilities: [
         {
             ability:

@@ -1,3 +1,11 @@
+
+$ltgray:  #f1f1f1;
+$mdgray: #aaa;
+$dkgray: #333;
+$white: #fff;
+$black: #000;
+$transitiontime: .5s;
+
 * 
 {
     font-family: Helvetica, Arial, sans-serif
@@ -6,7 +14,13 @@
 .pokemon-list 
 {
     width: calc( 100% - 350px );
-    transition: width .5s;
+    transition: width $transitiontime;
+}
+
+.full-width-list
+{
+    width: calc( 100% - 80px );
+    transition: width $transitiontime;
 }
 .pokemon-drawer 
 {
@@ -14,20 +28,20 @@
     right: 0;
     top: 0;
     width: 300px;
-    background-color: #f1f1f1;
+    background-color: $ltgray;
     height: 100%;
     padding: 20px;
-    box-shadow: #000 0px 0px 17px -7px;
+    box-shadow: $black 0px 0px 17px -7px;
 }
 
 .drawer-closed {
-    transition: right .5s;
+    transition: right $transitiontime;
     right: -270px;
 }
 
 .drawer-open
 {
-    transition: right .5s;
+    transition: right $transitiontime;
 }
 
 .drawer-closed app-pokemon-details
@@ -37,7 +51,7 @@
 
 
 .drawer-control {
-    background-color: white;
+    background-color:$white;
     border: 1px solid;
     display: inline-block;
     cursor: pointer;
@@ -46,15 +60,17 @@
 .drawer-control:hover
 {
     cursor:pointer;
-    background-color: #aaa;
+    background-color: $mdgray;
 }
-.bar1, .bar2, .bar3
+.bar1, 
+.bar2, 
+.bar3
 {
     width: 22px;
     height: 2px;
-    background-color: #333;
+    background-color: $dkgray;
     margin: 5px 0;
-    transition: 0.4s;
+    transition: $transitiontime;
 }
 
 .change .bar1 
@@ -63,19 +79,14 @@
     transform: rotate(-45deg) translate(-6px, 5px);
 }
 
-.change .bar2 
-{
-    opacity: 0;
-}
-
 .change .bar3 
 {
     -webkit-transform: rotate(45deg) translate(-5px, -4px);
     transform: rotate(45deg) translate(-5px, -4px);
 }
 
-.full-width-list
+.change .bar2 
 {
-    width: calc( 100% - 80px );
-    transition: width .5s;
+    opacity: 0;
 }
+

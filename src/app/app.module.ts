@@ -17,6 +17,7 @@ import { ToPoundsPipe } from './to-pounds.pipe';
 import { FilterNamePipe } from './filter-name.pipe';
 import { FilterNameTypePipe } from './filter-name-type.pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent,

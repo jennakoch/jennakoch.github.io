@@ -1,3 +1,4 @@
+$black: #000;
 * 
 {
     font-family: monospace;
@@ -5,7 +6,7 @@
 .basic-pokemon-info
 {
     position:relative;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid $black;
     height: 101px;
 }
 .stats
@@ -38,5 +39,44 @@ li
     width: 100%;
     padding: 0;
     height: 30px;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid $black;
+}
+
+.abilities 
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: -8px;
+}
+
+.abilities li 
+{
+    flex-grow: 2;
+}
+
+.abilities li a {
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+    padding: 0.5em 0;
+    background-color: #3b4cca;
+    color: #fff;
+    display: block;
+}
+
+.abilities li a.active-ability
+{
+    padding: 1em 0;
+    background-color: #5869ea;
+    z-index: 2;
+    box-shadow: #000 0px 4px 8px -3px;
+    position: relative;
+}
+
+.ability-details
+{
+    border: 1px solid #000000;
+    background-color: #fff;
+    padding: 15px 5px 3px;
 }

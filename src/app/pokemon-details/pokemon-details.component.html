@@ -13,10 +13,22 @@
 <ul class="types" >
     <li *ngFor="let t of individual.types">{{t.type.name | capitalize}}</li>
 </ul>
-
+<h3>Stats</h3>
 <ul class="info">
     <li *ngFor="let st of individual.stats" >
         <strong>{{st.stat.name}}</strong> 
         <span>{{st.base_stat}}</span>
     </li>
 </ul>
+<h3>Abilities</h3>
+<ul class="abilities"> 
+    <li *ngFor="let ab of individual.abilities">
+        <a routerLink="/pokemon/{{individual.id}}/ability/{{ab.ability.url | getId}}"  routerLinkActive="active-ability">{{ab.ability.name}}</a>
+        
+    </li>
+</ul>
+<div *ngIf="newPokemon" class="ability-details">
+    <span  *ngFor="let abDetails of ability.effect_entries">
+        {{abDetails?.effect}}
+    </span>
+</div>

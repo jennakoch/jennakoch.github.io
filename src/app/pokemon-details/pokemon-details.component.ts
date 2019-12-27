@@ -1,7 +1,8 @@
-import { Component, OnInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { PokedexService } from '../pokedex.service';
-import { ActivatedRoute, Router, NavigationStart, NavigationEnd, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router,  NavigationEnd } from '@angular/router';
 import { Individual } from '../individual';
+import { Ability } from '../ability';
 
 
 @Component({
@@ -11,27 +12,35 @@ import { Individual } from '../individual';
 })
 export class PokemonDetailsComponent implements OnInit {
 
-  individual: Individual[];
+  public individual: Individual[];
+  ability: Ability[];
   name: string;
+  abilityIds: string[] = [];
+  newPokemon: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private pokedexService: PokedexService,
   ) {
-    // force route reload whenever params change;
-    //this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    // prevent route reload whenever params change;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => true;
    }
 
   ngOnInit() {
 
     this.route.queryParams.subscribe(queryParams => {
       this.getIndividual();
+      this.getAbility();
+      this.checkForAbility();
 	  });
     this.route.params.subscribe(routeParams => {
       this.getIndividual();
+      this.getAbility();
+      this.checkForAbility();
     });
-    
+    this.checkUrl(this.route._routerState.snapshot.url);
+
   }
 
   getIndividual(){
@@ -51,6 +60,51 @@ export class PokemonDetailsComponent implements OnInit {
               });
           }
       });
+      this.getAbility();
+  }
+
+  getAbility(){
+    const abilityId = this.route.url["value"][3].path;
+    this.pokedexService.getAbilityById(abilityId)
+      .subscribe(Ability => {
+        this.ability = Ability;
+      });
+    this.router.events.subscribe(
+      (event) => {
+          if (event instanceof NavigationEnd)
+          {
+            const id = +this.route.snapshot.paramMap.get('abId');
+            this.pokedexService.getAbilityById(id)
+              .subscribe(Ability => {
+                this.ability = Ability;
+              });
+          }
+      });
+    
+  }
+
+  checkForAbility(){
+    this.router.events.subscribe(
+      (event) =>
+      {
+        if (event instanceof NavigationEnd)
+          {
+            const url = event.urlAfterRedirects;
+            this.checkUrl(url);
+          }
+      }
+    )
+    
+  }
+
+
+  checkUrl(url){
+    if(url.includes("ability")){
+      this.newPokemon = true;
+      this.getAbility();
+    }else{
+      this.newPokemon = false;
+    }
   }
 
 }
